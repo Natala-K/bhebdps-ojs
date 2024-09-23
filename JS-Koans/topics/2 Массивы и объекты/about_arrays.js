@@ -68,44 +68,45 @@ describe("About Arrays (about_arrays.js)", function() {
     let stack = [];
     stack.push("first");
     stack.push("second");
-
+  
     // what will be the first value popped off the stack?
-    expect(FILL_ME_IN).toBe(stack.pop());
-    expect(stack).toEqual(FILL_ME_IN);
+    expect("second").toBe(stack.pop());
+    expect(stack).toEqual(["first"]);
     // what will be the second value popped off the stack?
-    expect(FILL_ME_IN).toBe(stack.pop());
-    expect(stack).toEqual(FILL_ME_IN);
+    expect("first").toBe(stack.pop());
+    expect(stack).toEqual([]);
   });
-
+  
   it("queue methods", function() {
     let queue = [];
     queue.push("first");
     queue.push("second");
     queue.unshift("third");
-
+  
     // what will be shifted out first?
-    expect(FILL_ME_IN).toBe(queue.shift());
-    expect(queue).toEqual(FILL_ME_IN);
+    expect("third").toBe(queue.shift());
+    expect(queue).toEqual(["first", "second"]);
     // what will be shifted out second?
-    expect(FILL_ME_IN).toBe(queue.shift());
-    expect(queue).toEqual(FILL_ME_IN);
+    expect("first").toBe(queue.shift());
+    expect(queue).toEqual(["second"]);
   });
+  
 
   it("should know array references", function () {
-    let array = [ "zero", "one", "two", "three", "four", "five" ];
-
+    let array = ["zero", "one", "two", "three", "four", "five"];
+  
     function passedByReference(refArray) {
       refArray[1] = "changed in function";
     }
     passedByReference(array);
-    expect(array[1]).toBe(FILL_ME_IN);
+    expect(array[1]).toBe("changed in function"); // Массив передается по ссылке, изменяется элемент
   
     let assignedArray = array;
     assignedArray[5] = "changed in assignedArray";
-    expect(array[5]).toBe(FILL_ME_IN);
-
+    expect(array[5]).toBe("changed in assignedArray"); // assignedArray ссылается на тот же массив
+  
     let copyOfArray = array.slice();
     copyOfArray[3] = "changed in copyOfArray";
-    expect(array[3]).toBe(FILL_ME_IN);
-  });
-});
+    expect(array[3]).toBe("three"); // slice() создает копию массива, поэтому оригинальный массив не изменен
+  })
+  });  
